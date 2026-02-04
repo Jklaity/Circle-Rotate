@@ -121,8 +121,25 @@ huggingface-cli download jk1741391802/circle-rotate-lora --local-dir ./checkpoin
 
 ### Visual Comparison
 
+<table>
+<tr>
+<td align="center"><b>Others</b></td>
+<td align="center"><b>Ours</b></td>
+</tr>
+</table>
+
 <p align="center">
-  <img src="assets/comparison.png" width="100%">
+  <img src="assets/comparison_cat.gif" width="80%">
+</p>
+
+<p align="center">
+  <img src="assets/comparison_person.gif" width="80%">
+</p>
+
+### More Results
+
+<p align="center">
+  <img src="assets/demo_dog.gif" width="50%">
 </p>
 
 ## Training

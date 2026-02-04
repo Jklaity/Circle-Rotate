@@ -114,8 +114,25 @@ video = model.generate(
 
 ### 可视化对比
 
+<table>
+<tr>
+<td align="center"><b>其他方法</b></td>
+<td align="center"><b>我们的方法</b></td>
+</tr>
+</table>
+
 <p align="center">
-  <img src="assets/comparison.png" width="100%">
+  <img src="assets/comparison_cat.gif" width="80%">
+</p>
+
+<p align="center">
+  <img src="assets/comparison_person.gif" width="80%">
+</p>
+
+### 更多结果
+
+<p align="center">
+  <img src="assets/demo_dog.gif" width="50%">
 </p>
 
 ## 训练
