@@ -1,208 +1,177 @@
-# Unified Scripts for Video Evaluation and Visualization
+<p align="center">
+  <h1 align="center">Implicit Motion Alignment: A Data-Centric Empirical Study for Rigid-Body Video Generation</h1>
+  <p align="center">
+    <a href="https://github.com/Jklaity"><strong>Jiakang Chen</strong></a>
+    ·
+    <strong>Shuting Zeng</strong>
+  </p>
+  <p align="center">
+    <a href="https://arxiv.org/abs/xxxx.xxxxx">
+      <img src='https://img.shields.io/badge/arXiv-Paper-red?style=flat&logo=arxiv' alt='arXiv'>
+    </a>
+    <a href="https://github.com/Jklaity/Circle-Rotate">
+      <img src='https://img.shields.io/badge/GitHub-Code-black?style=flat&logo=github' alt='GitHub'>
+    </a>
+    <a href="https://huggingface.co/jk1741391802/circle-rotate-lora">
+      <img src='https://img.shields.io/badge/HuggingFace-Model-yellow?style=flat&logo=huggingface' alt='Model'>
+    </a>
+    <a href="#license">
+      <img src='https://img.shields.io/badge/License-Apache%202.0-blue.svg' alt='License'>
+    </a>
+  </p>
+</p>
 
-[English](#english) | [中文](#中文)
+<p align="center">
+  <img src="assets/teaser.gif" width="100%">
+</p>
 
----
+## Highlights
 
-## English
+- **81% Subject Drift Reduction**: Compared to SEINE (4.02 vs. 21.27 pixels/frame)
+- **Data-Centric Approach**: No explicit 3D pose supervision required
+- **Lightweight Fine-tuning**: Only 0.7% LoRA parameters (100M / 14B)
+- **Strong Generalization**: Validated across 5 datasets including CO3D and Mip-NeRF 360
 
-### Overview
+## Abstract
 
-A collection of unified scripts for video generation quality evaluation, visualization, and data processing. This toolkit consolidates multiple scattered scripts into three main unified scripts with command-line interfaces.
+Achieving precise camera control in image-to-video (I2V) generation has traditionally relied on explicit 3D pose supervision (e.g., CameraCtrl), which introduces expensive annotation costs and complex architectural designs. This paper explores a different path: **without any explicit 3D priors, can high-quality data alignment alone enable advanced I2V models to "emerge" rigid-body control capabilities?**
 
-### Features
+We adopt a minimalist "data-centric" strategy: constructing the **Circle-Rotate** benchmark with 2,168 geometrically aligned videos, and fine-tuning the Wan2.2 I2V model using only lightweight LoRA adapters (0.7% parameter overhead). Our method reduces subject drift by **81%** compared to I2V baselines like SEINE and DynamiCrafter, while maintaining high-fidelity generation quality.
 
-- **Unified Evaluation**: PSNR, SSIM, LPIPS, CLIP-I, FVD, motion hallucination metrics
-- **Unified Visualization**: Optical flow, X-T slices, trajectory plots
-- **Unified Data Processing**: Frame extraction, PDF merging
+## News
 
-### Installation
+- **[2025.xx]** Code and pre-trained weights released!
+- **[2025.xx]** Paper accepted to ECCV 2025!
+
+## Method Overview
+
+<p align="center">
+  <img src="assets/framework.png" width="100%">
+</p>
+
+Our approach consists of two key components:
+
+1. **Circle-Rotate Dataset**: 2,168 professionally produced videos with implicit geometric alignment
+2. **Dual-Stage LoRA Fine-tuning**: Frequency-decoupled adaptation for geometry and texture
+
+## Installation
 
 ```bash
 # Clone the repository
-cd jk_work/jk/gitcr
+git clone https://github.com/Jklaity/Circle-Rotate.git
+cd Circle-Rotate
+
+# Create conda environment
+conda create -n circle-rotate python=3.10 -y
+conda activate circle-rotate
 
 # Install dependencies
-pip install numpy opencv-python matplotlib scipy scikit-image
-pip install torch torchvision  # For deep learning metrics
-pip install lpips transformers  # For LPIPS and CLIP
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
+pip install -r requirements.txt
 ```
 
-### Project Structure
+## Quick Start
 
-```
-gitcr/
-├── unified_evaluation.py      # Unified evaluation script
-├── unified_visualization.py   # Unified visualization script
-├── unified_data_processing.py # Unified data processing script
-├── utils/
-│   ├── __init__.py
-│   ├── video_utils.py         # Video I/O utilities
-│   ├── metrics_utils.py       # Metric calculation utilities
-│   └── plot_utils.py          # Plotting utilities
-└── README.md
-```
-
-### Usage
-
-#### 1. Evaluation
+### Download Pretrained Weights
 
 ```bash
-# PSNR/SSIM evaluation
-python unified_evaluation.py --metric psnr \
-    --input_dir /path/to/videos \
-    --first_frame /path/to/first.png \
-    --last_frame /path/to/last.png \
+# Download LoRA weights from HuggingFace
+huggingface-cli download jk1741391802/circle-rotate-lora --local-dir ./checkpoints
+```
+
+### Inference
+
+```python
+from inference import CircleRotateInference
+
+# Initialize model
+model = CircleRotateInference(
+    base_model="Wan2.2-I2V-14B",
+    lora_high="checkpoints/circle_rotate_h.safetensors",
+    lora_low="checkpoints/circle_rotate_l.safetensors"
+)
+
+# Generate video from first-last frames
+video = model.generate(
+    first_frame="examples/first.png",
+    last_frame="examples/last.png",
+    prompt="A silver sedan, camera smoothly orbits left"
+)
+```
+
+## Circle-Rotate Dataset
+
+| Dataset | Videos | Resolution | Sharpness | Geometric Alignment |
+|---------|--------|------------|-----------|---------------------|
+| WebVid-10M | 10M | 336×596 | ~250 | ✗ |
+| RealEstate10K | 10M frames | -- | -- | Partial |
+| **Circle-Rotate** | **2,168** | **1080×1920** | **547.7** | **✓** |
+
+### Download Dataset
+
+```bash
+# Download from HuggingFace
+huggingface-cli download jk1741391802/circle-rotate-lora --local-dir ./checkpoints
+```
+
+## Results
+
+### Quantitative Comparison
+
+| Method | Subject Drift ↓ | First PSNR ↑ | CLIP-Temp ↑ |
+|--------|-----------------|--------------|-------------|
+| SEINE | 21.27 | 25.83 | 0.9587 |
+| DynamiCrafter | 15.79 | -- | -- |
+| **Ours** | **4.02** | **28.72** | **0.9751** |
+
+### Visual Comparison
+
+<p align="center">
+  <img src="assets/comparison.png" width="100%">
+</p>
+
+## Training
+
+```bash
+# Train high-noise LoRA
+python train.py \
+    --stage high \
+    --data_path ./data/circle_rotate \
+    --output_dir ./checkpoints \
+    --rank 32 \
+    --lr 2e-4 \
+    --epochs 15
+```
+
+## Evaluation
+
+```bash
+python unified_evaluation.py \
+    --metric all \
+    --input_dir ./outputs \
     --output results.json
-
-# Motion hallucination evaluation
-python unified_evaluation.py --metric motion_hallucination \
-    --input_dir /path/to/ours \
-    --baseline_dir /path/to/baseline \
-    --output motion_stats.json
 ```
 
-#### 2. Visualization
+## Citation
 
-```bash
-# Optical flow visualization
-python unified_visualization.py --type optical_flow \
-    --input_video /path/to/video.mp4 \
-    --output flow.png
+If you find this work useful, please cite:
 
-# X-T slice
-python unified_visualization.py --type xt_slice \
-    --input_video /path/to/video.mp4 \
-    --output xt_slice.png
+```bibtex
+@inproceedings{chen2025implicit,
+  title={Implicit Motion Alignment: A Data-Centric Empirical Study for Rigid-Body Video Generation},
+  author={Chen, Jiakang and Zeng, Shuting},
+  booktitle={European Conference on Computer Vision (ECCV)},
+  year={2025}
+}
 ```
 
-#### 3. Data Processing
+## Acknowledgements
 
-```bash
-# Extract frames from CO3D
-python unified_data_processing.py --task extract_frames \
-    --category banana \
-    --sequence 610_96665_193716 \
-    --output ./frames
+This work builds upon several excellent open-source projects:
+- [Wan2.2](https://github.com/xxx/wan) - Base I2V model
+- [SEINE](https://github.com/Vchitect/SEINE) - Baseline comparison
+- [DynamiCrafter](https://github.com/xxx/dynamicrafter) - Baseline comparison
 
-# Merge PDFs
-python unified_data_processing.py --task merge_pdf \
-    --input_dir /path/to/pdfs \
-    --output merged.pdf
-```
+## License
 
-### API Reference
-
-#### unified_evaluation.py
-
-| Argument | Description |
-|----------|-------------|
-| `--metric` | Metric type: `psnr`, `ssim`, `lpips`, `clip_i`, `motion_hallucination`, `all` |
-| `--input_dir` | Input video directory |
-| `--baseline_dir` | Baseline video directory (for comparison) |
-| `--first_frame` | First frame image path |
-| `--last_frame` | Last frame image path |
-| `--output` | Output file path |
-| `--target_size` | Target size (h,w), default: `720,1280` |
-
-#### unified_visualization.py
-
-| Argument | Description |
-|----------|-------------|
-| `--type` | Visualization type: `optical_flow`, `xt_slice`, `trajectory`, `eccv_comparison` |
-| `--input_video` | Input video path |
-| `--output` | Output file path |
-| `--y_pos` | Y position for X-T slice |
-
-#### unified_data_processing.py
-
-| Argument | Description |
-|----------|-------------|
-| `--task` | Task type: `extract_frames`, `merge_pdf` |
-| `--category` | CO3D category |
-| `--sequence` | CO3D sequence ID |
-| `--input_dir` | Input directory |
-| `--output` | Output path |
-| `--num_frames` | Number of frames, default: `16` |
-
-### License
-
-MIT License
-
----
-
-## 中文
-
-### 概述
-
-视频生成质量评估、可视化和数据处理的统一脚本集合。本工具包将多个分散的脚本整合为三个主要的统一脚本，提供命令行接口。
-
-### 功能特性
-
-- **统一评估**: PSNR、SSIM、LPIPS、CLIP-I、FVD、运动幻觉指标
-- **统一可视化**: 光流、X-T切片、轨迹图
-- **统一数据处理**: 帧提取、PDF合并
-
-### 安装
-
-```bash
-# 进入目录
-cd jk_work/jk/gitcr
-
-# 安装依赖
-pip install numpy opencv-python matplotlib scipy scikit-image
-pip install torch torchvision  # 深度学习指标
-pip install lpips transformers  # LPIPS和CLIP
-```
-
-### 使用方法
-
-#### 1. 评估
-
-```bash
-# PSNR/SSIM评估
-python unified_evaluation.py --metric psnr \
-    --input_dir /视频目录 \
-    --first_frame /首帧.png \
-    --last_frame /尾帧.png \
-    --output results.json
-
-# 运动幻觉评估
-python unified_evaluation.py --metric motion_hallucination \
-    --input_dir /ours目录 \
-    --baseline_dir /基线目录 \
-    --output motion_stats.json
-```
-
-#### 2. 可视化
-
-```bash
-# 光流可视化
-python unified_visualization.py --type optical_flow \
-    --input_video /视频.mp4 \
-    --output flow.png
-
-# X-T切片
-python unified_visualization.py --type xt_slice \
-    --input_video /视频.mp4 \
-    --output xt_slice.png
-```
-
-#### 3. 数据处理
-
-```bash
-# 从CO3D提取帧
-python unified_data_processing.py --task extract_frames \
-    --category banana \
-    --sequence 610_96665_193716 \
-    --output ./frames
-
-# 合并PDF
-python unified_data_processing.py --task merge_pdf \
-    --input_dir /pdf目录 \
-    --output merged.pdf
-```
-
-### 许可证
-
-MIT License
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
