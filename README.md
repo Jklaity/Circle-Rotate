@@ -121,20 +121,17 @@ Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datase
 </tr>
 <tr>
 <td align="center">
-  <table width="100%"><tr>
-    <td width="50%"><img src="assets/demo1_base.gif" width="100%"></td>
-    <td width="50%"><img src="assets/demo1_cameractrl.gif" width="100%"></td>
-  </tr></table>
+  <img src="assets/demo1_base.gif" width="180"><img src="assets/demo1_cameractrl.gif" width="180">
 </td>
-<td align="center"><img src="assets/demo1_ours.gif" width="50%"></td>
+<td align="center"><img src="assets/demo1_ours.gif" width="180"></td>
 </tr>
 <tr>
-<td align="center"><img src="assets/cat_others.gif" width="50%"></td>
-<td align="center"><img src="assets/cat_ours.gif" width="50%"></td>
+<td align="center"><img src="assets/cat_others.gif" width="180"></td>
+<td align="center"><img src="assets/cat_ours.gif" width="180"></td>
 </tr>
 <tr>
-<td align="center"><img src="assets/person_others.gif" width="50%"></td>
-<td align="center"><img src="assets/person_ours.gif" width="50%"></td>
+<td align="center"><img src="assets/person_others.gif" width="180"></td>
+<td align="center"><img src="assets/person_ours.gif" width="180"></td>
 </tr>
 </table>
 
