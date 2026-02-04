@@ -140,19 +140,6 @@ python unified_evaluation.py \
     --output results.json
 ```
 
-## 引用
-
-如果您觉得本工作有帮助，请引用：
-
-```bibtex
-@inproceedings{chen2025implicit,
-  title={Implicit Motion Alignment: A Data-Centric Empirical Study for Rigid-Body Video Generation},
-  author={Chen, Jiakang and Zeng, Shuting},
-  booktitle={European Conference on Computer Vision (ECCV)},
-  year={2025}
-}
-```
-
 ## 致谢
 
 本工作基于以下优秀的开源项目：
