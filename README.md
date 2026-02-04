@@ -116,8 +116,11 @@ Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datase
 
 <table>
 <tr>
-<td align="center"><b>Others</b></td>
+<td align="center"><b>Others (Base + CameraCtrl)</b></td>
 <td align="center"><b>Ours</b></td>
+</tr>
+<tr>
+<td colspan="2" align="center"><img src="assets/comparison_demo1.gif" width="100%"></td>
 </tr>
 <tr>
 <td align="center"><img src="assets/cat_others.gif" width="100%"></td>
