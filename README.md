@@ -116,8 +116,8 @@ Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datase
 
 <table>
 <tr>
-<td align="center"><b>Others</b></td>
-<td align="center"><b>Ours</b></td>
+<td width="50%" align="center"><b>Others</b></td>
+<td width="50%" align="center"><b>Ours</b></td>
 </tr>
 <tr>
 <td align="center">
