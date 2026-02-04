@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.ipynb_checkpoints/
+
+# 数据和模型文件
+*.pt
+*.pth
+*.ckpt
+*.npz
+*.npy
+*.mp4
+*.avi
+*.zip
+
+# 日志
+*.log
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# 临时文件
+*.tmp
+*.swp
