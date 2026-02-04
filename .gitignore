@@ -11,9 +11,14 @@ __pycache__/
 *.ckpt
 *.npz
 *.npy
+*.safetensors
+*.zip
+
+# 视频文件（但保留 assets 目录）
 *.mp4
 *.avi
-*.zip
+!assets/*.mp4
+!assets/*.gif
 
 # 日志
 *.log
