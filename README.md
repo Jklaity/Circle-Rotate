@@ -127,15 +127,29 @@ huggingface-cli download jk1741391802/circle-rotate-lora --local-dir ./checkpoin
 
 ## Training
 
+We use [musubi-tuner](https://github.com/kohya-ss/musubi-tuner) for LoRA training.
+
 ```bash
-# Train high-noise LoRA
-python train.py \
-    --stage high \
-    --data_path ./data/circle_rotate \
-    --output_dir ./checkpoints \
-    --rank 32 \
-    --lr 2e-4 \
-    --epochs 15
+# Train low-noise LoRA
+CUDA_VISIBLE_DEVICES=0 accelerate launch --num_processes 1 \
+    src/musubi_tuner/wan_train_network.py \
+    --task i2v-A14B \
+    --dit models/wan2.2_i2v_low_noise_14B_fp16.safetensors \
+    --dataset_config datasets/circle/circle.toml \
+    --vae models/Wan2.1_VAE.pth \
+    --sdpa --fp8_base \
+    --optimizer_type adamw8bit \
+    --learning_rate 2e-4 \
+    --network_module networks.lora_wan \
+    --network_dim 32 \
+    --timestep_sampling shift \
+    --discrete_flow_shift 8.0 \
+    --max_train_epochs 100 \
+    --save_every_n_epochs 1 \
+    --seed 42 \
+    --output_dir ./outputs/low \
+    --output_name circle_rotate_l \
+    --mixed_precision fp16
 ```
 
 ## Evaluation
@@ -150,7 +164,8 @@ python unified_evaluation.py \
 ## Acknowledgements
 
 This work builds upon several excellent open-source projects:
-- [Wan2.2](https://github.com/xxx/wan) - Base I2V model
+- [Wan2.1](https://github.com/Wan-Video/Wan2.1) - Base I2V model
+- [musubi-tuner](https://github.com/kohya-ss/musubi-tuner) - LoRA training framework
 
 ## License
 
