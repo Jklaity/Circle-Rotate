@@ -104,11 +104,11 @@ video = model.generate(
 
 ## Circle-Rotate 数据集
 
-| 数据集 | 视频数 | 分辨率 | 清晰度 | 几何对齐 |
-|--------|--------|--------|--------|----------|
-| WebVid-10M | 10M | 336×596 | ~250 | ✗ |
-| RealEstate10K | 10M 帧 | -- | -- | 部分 |
-| **Circle-Rotate** | **2,168** | **1080×1920** | **547.7** | **✓** |
+<p align="center">
+  <img src="assets/dataset.png" width="80%">
+</p>
+
+从 HuggingFace 下载：[circle-rotate-dataset](https://huggingface.co/datasets/jk1741391802/circle-rotate-dataset)
 
 ## 实验结果
 

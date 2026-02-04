@@ -104,18 +104,11 @@ video = model.generate(
 
 ## Circle-Rotate Dataset
 
-| Dataset | Videos | Resolution | Sharpness | Geometric Alignment |
-|---------|--------|------------|-----------|---------------------|
-| WebVid-10M | 10M | 336×596 | ~250 | ✗ |
-| RealEstate10K | 10M frames | -- | -- | Partial |
-| **Circle-Rotate** | **2,168** | **1080×1920** | **547.7** | **✓** |
+<p align="center">
+  <img src="assets/dataset.png" width="80%">
+</p>
 
-### Download Dataset
-
-```bash
-# Download from HuggingFace
-huggingface-cli download jk1741391802/circle-rotate-lora --local-dir ./checkpoints
-```
+Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datasets/jk1741391802/circle-rotate-dataset)
 
 ## Results
 
