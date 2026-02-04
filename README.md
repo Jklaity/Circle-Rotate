@@ -44,7 +44,7 @@ We adopt a minimalist "data-centric" strategy: constructing the **Circle-Rotate*
 
 ## News
 
-- **[2025.xx]** Code and pre-trained weights released!
+- **[2025.02.04]** Pre-trained weights released!
 
 ## Method Overview
 
