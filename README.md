@@ -129,12 +129,6 @@ Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datase
 </tr>
 </table>
 
-### More Results
-
-<p align="center">
-  <img src="assets/demo_dog.gif" width="50%">
-</p>
-
 ## Training
 
 We use [musubi-tuner](https://github.com/kohya-ss/musubi-tuner) for LoRA training.

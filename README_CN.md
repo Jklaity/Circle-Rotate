@@ -129,12 +129,6 @@ video = model.generate(
 </tr>
 </table>
 
-### 更多结果
-
-<p align="center">
-  <img src="assets/demo_dog.gif" width="50%">
-</p>
-
 ## 训练
 
 我们使用 [musubi-tuner](https://github.com/kohya-ss/musubi-tuner) 进行 LoRA 训练。
