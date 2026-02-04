@@ -119,15 +119,15 @@ video = model.generate(
 <td align="center"><b>其他方法</b></td>
 <td align="center"><b>我们的方法</b></td>
 </tr>
+<tr>
+<td align="center"><img src="assets/cat_others.gif" width="100%"></td>
+<td align="center"><img src="assets/cat_ours.gif" width="100%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/person_others.gif" width="100%"></td>
+<td align="center"><img src="assets/person_ours.gif" width="100%"></td>
+</tr>
 </table>
-
-<p align="center">
-  <img src="assets/comparison_cat.gif" width="80%">
-</p>
-
-<p align="center">
-  <img src="assets/comparison_person.gif" width="80%">
-</p>
 
 ### 更多结果
 
