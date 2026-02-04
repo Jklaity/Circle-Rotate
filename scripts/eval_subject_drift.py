@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 """
-Subject Drift Evaluation Script
+Subject Drift Evaluation Script (YOLO + SAM)
 
 Usage:
     python scripts/eval_subject_drift.py --video path/to/video.mp4
 """
 
 import argparse
-from ultralytics import YOLO
 
 from circle_rotate.metrics.subject_drift import (
-    extract_frames, calculate_subject_drift
+    load_models, extract_frames, calculate_subject_drift
 )
 
 
@@ -20,15 +19,15 @@ def main():
     parser.add_argument("--num_frames", type=int, default=16)
     args = parser.parse_args()
 
-    print("Loading YOLOv8 model...")
-    model = YOLO("yolov8n.pt")
+    print("Loading YOLO + SAM models...")
+    yolo, predictor = load_models()
 
     frames = extract_frames(args.video, args.num_frames)
     if len(frames) < 2:
         print("Error: Not enough frames")
         return
 
-    metrics = calculate_subject_drift(frames, model)
+    metrics = calculate_subject_drift(frames, yolo, predictor)
 
     print(f"\nResults for {args.video}:")
     print(f"  Subject Flow: {metrics['subject_flow']:.4f}")
