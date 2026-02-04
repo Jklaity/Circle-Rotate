@@ -1,4 +1,8 @@
 <p align="center">
+  <a href="README.md">English</a> | <a href="README_CN.md">中文</a>
+</p>
+
+<p align="center">
   <h1 align="center">Implicit Motion Alignment: A Data-Centric Empirical Study for Rigid-Body Video Generation</h1>
   <p align="center">
     <a href="https://github.com/Jklaity"><strong>Jiakang Chen</strong></a>
@@ -27,7 +31,7 @@
 
 ## Highlights
 
-- **81% Subject Drift Reduction**: Compared to SEINE (4.02 vs. 21.27 pixels/frame)
+- **81% Subject Drift Reduction**: Compared to baseline methods (4.02 vs. 21.27 pixels/frame)
 - **Data-Centric Approach**: No explicit 3D pose supervision required
 - **Lightweight Fine-tuning**: Only 0.7% LoRA parameters (100M / 14B)
 - **Strong Generalization**: Validated across 5 datasets including CO3D and Mip-NeRF 360
@@ -36,12 +40,11 @@
 
 Achieving precise camera control in image-to-video (I2V) generation has traditionally relied on explicit 3D pose supervision (e.g., CameraCtrl), which introduces expensive annotation costs and complex architectural designs. This paper explores a different path: **without any explicit 3D priors, can high-quality data alignment alone enable advanced I2V models to "emerge" rigid-body control capabilities?**
 
-We adopt a minimalist "data-centric" strategy: constructing the **Circle-Rotate** benchmark with 2,168 geometrically aligned videos, and fine-tuning the Wan2.2 I2V model using only lightweight LoRA adapters (0.7% parameter overhead). Our method reduces subject drift by **81%** compared to I2V baselines like SEINE and DynamiCrafter, while maintaining high-fidelity generation quality.
+We adopt a minimalist "data-centric" strategy: constructing the **Circle-Rotate** benchmark with 2,168 geometrically aligned videos, and fine-tuning the Wan2.2 I2V model using only lightweight LoRA adapters (0.7% parameter overhead). Our method reduces subject drift by **81%** compared to I2V baselines, while maintaining high-fidelity generation quality.
 
 ## News
 
 - **[2025.xx]** Code and pre-trained weights released!
-- **[2025.xx]** Paper accepted to ECCV 2025!
 
 ## Method Overview
 
@@ -116,14 +119,6 @@ huggingface-cli download jk1741391802/circle-rotate-lora --local-dir ./checkpoin
 
 ## Results
 
-### Quantitative Comparison
-
-| Method | Subject Drift ↓ | First PSNR ↑ | CLIP-Temp ↑ |
-|--------|-----------------|--------------|-------------|
-| SEINE | 21.27 | 25.83 | 0.9587 |
-| DynamiCrafter | 15.79 | -- | -- |
-| **Ours** | **4.02** | **28.72** | **0.9751** |
-
 ### Visual Comparison
 
 <p align="center">
@@ -169,8 +164,6 @@ If you find this work useful, please cite:
 
 This work builds upon several excellent open-source projects:
 - [Wan2.2](https://github.com/xxx/wan) - Base I2V model
-- [SEINE](https://github.com/Vchitect/SEINE) - Baseline comparison
-- [DynamiCrafter](https://github.com/xxx/dynamicrafter) - Baseline comparison
 
 ## License
 
