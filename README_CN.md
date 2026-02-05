@@ -169,57 +169,25 @@ CUDA_VISIBLE_DEVICES=0 accelerate launch --num_processes 1 \
 
 ## 评估
 
-我们提供 5 个评估脚本，用于全面的视频质量评估：
-
-### 主体漂移 (YOLO + SAM)
-
-使用 YOLO 检测和 SAM 分割测量帧间主体位置漂移。
+一键运行所有评估指标：
 
 ```bash
-python scripts/eval_subject_drift.py --video path/to/video.mp4 --num_frames 16
+python scripts/eval_all.py --video path/to/video.mp4 --output results.json
 ```
 
-**输出：** Subject Flow, Global Flow, Drift（像素/帧）
+**参数选项：**
+- `--num_frames`：采样帧数（默认：16）
+- `--no_lpips`：跳过 LPIPS 计算
+- `--output`：保存结果到 JSON 文件
 
-### CLIP-I 相似度
-
-使用 CLIP 图像嵌入评估语义一致性。
-
-```bash
-python scripts/eval_clip_i.py --video path/to/video.mp4 --num_frames 16
-```
-
-**输出：** 首尾帧相似度, 全局平均, 帧准确率
-
-### 保真度 (PSNR/SSIM/LPIPS)
-
-测量首尾帧之间的重建质量。
-
-```bash
-python scripts/eval_fidelity.py --video path/to/video.mp4 --lpips
-```
-
-**输出：** PSNR, SSIM, LPIPS（可选）
-
-### VBench 主体一致性
-
-使用 DINO ViT 特征评估主体一致性。
-
-```bash
-python scripts/eval_vbench_sc.py --video path/to/video.mp4 --num_frames 16
-```
-
-**输出：** VBench-SC 分数
-
-### 运动指标
-
-分析运动幅度和动态程度。
-
-```bash
-python scripts/eval_motion.py --video path/to/video.mp4 --threshold 10
-```
-
-**输出：** Motion Magnitude, Dynamic Degree
+**包含指标：**
+| 指标 | 描述 |
+|------|------|
+| Subject Drift | 使用 YOLO + SAM 的主体位置漂移 |
+| CLIP-I | 基于 CLIP 嵌入的语义一致性 |
+| Fidelity | 首尾帧间的 PSNR, SSIM, LPIPS |
+| VBench-SC | 使用 DINO 特征的主体一致性 |
+| Motion | 运动幅度和动态程度 |
 
 ## 致谢
 

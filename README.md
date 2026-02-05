@@ -169,57 +169,25 @@ CUDA_VISIBLE_DEVICES=0 accelerate launch --num_processes 1 \
 
 ## Evaluation
 
-We provide 5 evaluation scripts for comprehensive video quality assessment:
-
-### Subject Drift (YOLO + SAM)
-
-Measures subject position drift across frames using YOLO detection and SAM segmentation.
+Run all metrics at once:
 
 ```bash
-python scripts/eval_subject_drift.py --video path/to/video.mp4 --num_frames 16
+python scripts/eval_all.py --video path/to/video.mp4 --output results.json
 ```
 
-**Outputs:** Subject Flow, Global Flow, Drift (pixels/frame)
+**Options:**
+- `--num_frames`: Number of frames to sample (default: 16)
+- `--no_lpips`: Skip LPIPS calculation
+- `--output`: Save results to JSON file
 
-### CLIP-I Similarity
-
-Evaluates semantic consistency using CLIP image embeddings.
-
-```bash
-python scripts/eval_clip_i.py --video path/to/video.mp4 --num_frames 16
-```
-
-**Outputs:** First-Last similarity, Global Average, Frame Accuracy
-
-### Fidelity (PSNR/SSIM/LPIPS)
-
-Measures reconstruction quality between first and last frames.
-
-```bash
-python scripts/eval_fidelity.py --video path/to/video.mp4 --lpips
-```
-
-**Outputs:** PSNR, SSIM, LPIPS (optional)
-
-### VBench Subject Consistency
-
-Evaluates subject consistency using DINO ViT features.
-
-```bash
-python scripts/eval_vbench_sc.py --video path/to/video.mp4 --num_frames 16
-```
-
-**Outputs:** VBench-SC score
-
-### Motion Metrics
-
-Analyzes motion magnitude and dynamic degree.
-
-```bash
-python scripts/eval_motion.py --video path/to/video.mp4 --threshold 10
-```
-
-**Outputs:** Motion Magnitude, Dynamic Degree
+**Metrics included:**
+| Metric | Description |
+|--------|-------------|
+| Subject Drift | Subject position drift using YOLO + SAM |
+| CLIP-I | Semantic consistency via CLIP embeddings |
+| Fidelity | PSNR, SSIM, LPIPS between first/last frames |
+| VBench-SC | Subject consistency using DINO features |
+| Motion | Motion magnitude and dynamic degree |
 
 ## Acknowledgements
 
