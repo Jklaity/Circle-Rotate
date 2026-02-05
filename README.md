@@ -120,7 +120,14 @@ Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datase
 <td width="50%" align="center"><b>Ours</b></td>
 </tr>
 <tr>
-<td align="center"><img src="assets/demo1_base.gif" width="45%"> | <img src="assets/demo1_cameractrl.gif" width="45%"></td>
+<td align="center">
+  <table>
+    <tr>
+      <td align="center"><img src="assets/demo1_base.gif" width="100%"></td>
+      <td align="center"><img src="assets/demo1_cameractrl.gif" width="100%"></td>
+    </tr>
+  </table>
+</td>
 <td align="center"><img src="assets/demo1_ours.gif" width="45%"></td>
 </tr>
 <tr>
