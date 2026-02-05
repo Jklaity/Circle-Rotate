@@ -116,7 +116,7 @@ Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datase
 
 ### Visual Comparison
 
-Our method produces **more static backgrounds** and **less subject drift** compared to baseline methods. The subject remains stable while the camera smoothly rotates around it.
+Our method produces **more static subjects** with **less subject drift** compared to baseline methods. The subject remains stable while the camera smoothly rotates around it.
 
 <table width="560">
 <tr>
