@@ -121,7 +121,7 @@ Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datase
 </tr>
 <tr>
 <td align="center">
-  <table>
+  <table width="100%">
     <tr>
       <td align="center"><img src="assets/demo1_base.gif" width="90%"></td>
       <td align="center"><img src="assets/demo1_cameractrl.gif" width="90%"></td>
