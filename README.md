@@ -128,7 +128,7 @@ Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datase
     </tr>
   </table>
 </td>
-<td align="center"><img src="assets/demo1_ours.gif" width="45%"></td>
+<td align="center"><img src="assets/demo1_ours.gif" width="50%"></td>
 </tr>
 <tr>
 <td align="center"><img src="assets/cat_others.gif" width="39%"></td>
