@@ -203,6 +203,10 @@ CUDA_VISIBLE_DEVICES=0 accelerate launch --num_processes 1 \
     --sdpa --fp8_base \
     --optimizer_type adamw8bit \
     --learning_rate 2e-4 \
+    --gradient_checkpointing \
+    --gradient_checkpointing_cpu_offload \
+    --max_data_loader_n_workers 1 \
+    --persistent_data_loader_workers \
     --network_module networks.lora_wan \
     --network_dim 32 \
     --timestep_sampling shift \
@@ -212,7 +216,46 @@ CUDA_VISIBLE_DEVICES=0 accelerate launch --num_processes 1 \
     --seed 42 \
     --output_dir ./outputs/low \
     --output_name circle_rotate_l \
-    --mixed_precision fp16
+    --mixed_precision fp16 \
+    --blocks_to_swap 30 \
+    --vae_cache_cpu \
+    --t5 models/models_t5_umt5-xxl-enc-bf16.pth \
+    --sample_prompts prompts.txt \
+    --sample_every_n_epochs 1 \
+    --sample_at_first
+```
+
+```bash
+# Train high-noise LoRA
+CUDA_VISIBLE_DEVICES=0 accelerate launch --num_processes 1 \
+    src/musubi_tuner/wan_train_network.py \
+    --task i2v-A14B \
+    --dit models/wan2.2_i2v_high_noise_14B_fp16.safetensors \
+    --dataset_config datasets/circle/circle.toml \
+    --vae models/Wan2.1_VAE.pth \
+    --sdpa --fp8_base \
+    --optimizer_type adamw8bit \
+    --learning_rate 2e-4 \
+    --gradient_checkpointing \
+    --gradient_checkpointing_cpu_offload \
+    --max_data_loader_n_workers 1 \
+    --persistent_data_loader_workers \
+    --network_module networks.lora_wan \
+    --network_dim 32 \
+    --timestep_sampling shift \
+    --discrete_flow_shift 8.0 \
+    --max_train_epochs 100 \
+    --save_every_n_epochs 1 \
+    --seed 42 \
+    --output_dir ./outputs/high \
+    --output_name circle_rotate_h \
+    --mixed_precision fp16 \
+    --blocks_to_swap 30 \
+    --vae_cache_cpu \
+    --t5 models/models_t5_umt5-xxl-enc-bf16.pth \
+    --sample_prompts prompts.txt \
+    --sample_every_n_epochs 1 \
+    --sample_at_first
 ```
 
 ## Evaluation
