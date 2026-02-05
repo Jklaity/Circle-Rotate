@@ -138,6 +138,54 @@ Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datase
 <td align="center"><img src="assets/person_others.gif" width="39%"></td>
 <td align="center"><img src="assets/person_ours.gif" width="90%"></td>
 </tr>
+<tr>
+<td align="center"><img src="assets/demo2_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo2_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demo3_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo3_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demo4_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo4_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demo5_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo5_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demo6_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo6_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demo7_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo7_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demo8_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo8_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demo9_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo9_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demo10_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo10_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demo11_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo11_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demo12_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo12_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/demo13_base.gif" width="90%"></td>
+<td align="center"><img src="assets/demo13_ours.gif" width="90%"></td>
+</tr>
 </table>
 
 ## Training
