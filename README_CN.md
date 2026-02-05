@@ -114,17 +114,17 @@ video = model.generate(
 
 ### 可视化对比
 
-<table width="400">
+<table width="560">
 <tr>
-<td width="200" align="center"><b>其他方法</b></td>
-<td width="200" align="center"><b>我们的方法</b></td>
+<td width="380" align="center"><b>其他方法</b></td>
+<td width="180" align="center"><b>我们的方法</b></td>
 </tr>
 <tr>
 <td align="center">
-  <table width="200">
+  <table width="360">
     <tr>
-      <td align="center"><img src="assets/demo1_base.gif" width="90"></td>
-      <td align="center"><img src="assets/demo1_cameractrl.gif" width="90"></td>
+      <td align="center"><img src="assets/demo1_base.gif" width="180"></td>
+      <td align="center"><img src="assets/demo1_cameractrl.gif" width="180"></td>
     </tr>
   </table>
 </td>
