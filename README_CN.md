@@ -116,16 +116,27 @@ video = model.generate(
 
 <table>
 <tr>
-<td align="center"><b>其他方法</b></td>
-<td align="center"><b>我们的方法</b></td>
+<td width="50%" align="center"><b>其他方法</b></td>
+<td width="50%" align="center"><b>我们的方法</b></td>
 </tr>
 <tr>
-<td align="center"><img src="assets/cat_others.gif" width="100%"></td>
-<td align="center"><img src="assets/cat_ours.gif" width="100%"></td>
+<td align="center">
+  <table width="100%">
+    <tr>
+      <td align="center"><img src="assets/demo1_base.gif" width="90%"></td>
+      <td align="center"><img src="assets/demo1_cameractrl.gif" width="90%"></td>
+    </tr>
+  </table>
+</td>
+<td align="center"><img src="assets/demo1_ours.gif" width="90%"></td>
 </tr>
 <tr>
-<td align="center"><img src="assets/person_others.gif" width="100%"></td>
-<td align="center"><img src="assets/person_ours.gif" width="100%"></td>
+<td align="center"><img src="assets/cat_others.gif" width="39%"></td>
+<td align="center"><img src="assets/cat_ours.gif" width="90%"></td>
+</tr>
+<tr>
+<td align="center"><img src="assets/person_others.gif" width="39%"></td>
+<td align="center"><img src="assets/person_ours.gif" width="90%"></td>
 </tr>
 </table>
 
