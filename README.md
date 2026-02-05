@@ -179,10 +179,6 @@ Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datase
 <td align="center"><img src="assets/demo11_ours.gif" width="90%"></td>
 </tr>
 <tr>
-<td align="center"><img src="assets/demo12_base.gif" width="39%"></td>
-<td align="center"><img src="assets/demo12_ours.gif" width="90%"></td>
-</tr>
-<tr>
 <td align="center"><img src="assets/demo13_base.gif" width="39%"></td>
 <td align="center"><img src="assets/demo13_ours.gif" width="90%"></td>
 </tr>
