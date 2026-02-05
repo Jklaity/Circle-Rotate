@@ -108,11 +108,15 @@ video = model.generate(
   <img src="assets/dataset.png" width="80%">
 </p>
 
+Circle-Rotate 数据集包含 **2,168 个高质量视频**，具有隐式几何对齐特性。每个视频展示了相机围绕静态主体的平滑圆周运动，提供一致的刚体旋转模式，无需显式3D姿态标注。
+
 从 HuggingFace 下载：[circle-rotate-dataset](https://huggingface.co/datasets/jk1741391802/circle-rotate-dataset)
 
 ## 实验结果
 
 ### 可视化对比
+
+与基线方法相比，我们的方法产生**更静态的背景**和**更少的主体位移**。主体保持稳定，相机平滑地围绕其旋转。
 
 <table width="560">
 <tr>

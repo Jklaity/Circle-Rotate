@@ -108,11 +108,15 @@ video = model.generate(
   <img src="assets/dataset.png" width="80%">
 </p>
 
+The Circle-Rotate dataset contains **2,168 high-quality videos** with implicit geometric alignment. Each video features smooth circular camera motion around a static subject, providing consistent rigid-body rotation patterns without explicit 3D pose annotations.
+
 Download from HuggingFace: [circle-rotate-dataset](https://huggingface.co/datasets/jk1741391802/circle-rotate-dataset)
 
 ## Results
 
 ### Visual Comparison
+
+Our method produces **more static backgrounds** and **less subject drift** compared to baseline methods. The subject remains stable while the camera smoothly rotates around it.
 
 <table width="560">
 <tr>
