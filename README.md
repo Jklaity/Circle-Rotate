@@ -61,20 +61,58 @@ Our approach consists of two key components:
 
 ### Prerequisites
 
-This project requires [ComfyUI](https://github.com/comfyanonymous/ComfyUI) for inference. Please install ComfyUI first:
+This project requires [ComfyUI](https://github.com/comfyanonymous/ComfyUI) for inference.
+
+### Directory Structure
+
+**Important:** Clone both repositories side by side in the same parent directory:
+
+```
+workspace/                        # Your working directory
+├── ComfyUI/                      # ComfyUI installation
+│   ├── main.py
+│   ├── nodes.py
+│   ├── server.py
+│   ├── comfy/
+│   ├── comfy_extras/
+│   ├── models/
+│   │   ├── diffusion_models/
+│   │   │   ├── wan2.2_fun_inpaint_high_noise_14B_fp8_scaled.safetensors
+│   │   │   └── wan2.2_fun_inpaint_low_noise_14B_fp8_scaled.safetensors
+│   │   ├── loras/
+│   │   │   ├── wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors
+│   │   │   ├── wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors
+│   │   │   ├── circle_rotate_h.safetensors      # Circle-Rotate LoRA
+│   │   │   └── circle_rotate_l.safetensors      # Circle-Rotate LoRA
+│   │   ├── vae/
+│   │   │   └── wan_2.1_vae.safetensors
+│   │   └── text_encoders/
+│   │       └── umt5_xxl_fp8_e4m3fn_scaled.safetensors
+│   └── ...
+└── Circle-Rotate/                # This project (same level as ComfyUI)
+    ├── inference.py
+    ├── workflow.json
+    ├── examples/
+    └── ...
+```
+
+### Setup Steps
+
+**Step 1: Install ComfyUI**
 
 ```bash
-# Install ComfyUI (see official guide for details)
+cd workspace
 git clone https://github.com/comfyanonymous/ComfyUI.git
 cd ComfyUI
 pip install -r requirements.txt
 ```
 
-For detailed installation instructions, refer to the [ComfyUI Installation Guide](https://docs.comfy.org/get_started/manual_install).
+For detailed instructions, refer to the [ComfyUI Installation Guide](https://docs.comfy.org/get_started/manual_install).
 
-### Clone This Repository
+**Step 2: Clone This Repository**
 
 ```bash
+cd workspace
 git clone https://github.com/Jklaity/Circle-Rotate.git
 cd Circle-Rotate
 pip install -r requirements.txt
