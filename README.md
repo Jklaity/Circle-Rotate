@@ -31,16 +31,16 @@
 
 ## Highlights
 
-- **81% Subject Drift Reduction**: Compared to baseline methods (4.02 vs. 21.27 pixels/frame)
+- **15.1% Subject Drift Reduction**: Compared to baseline methods on CO3D (23.78 vs. 28.02 pixels/frame)
 - **Data-Centric Approach**: No explicit 3D pose supervision required
-- **Lightweight Fine-tuning**: Only 0.7% LoRA parameters (100M / 14B)
+- **Lightweight Fine-tuning**: Only 1.4% LoRA parameters (high/low noise each 0.7%)
 - **Strong Generalization**: Validated across 5 datasets including CO3D and Mip-NeRF 360
 
 ## Abstract
 
 Achieving precise camera control in image-to-video (I2V) generation has traditionally relied on explicit 3D pose supervision (e.g., CameraCtrl), which introduces expensive annotation costs and complex architectural designs. This paper explores a different path: **without any explicit 3D priors, can high-quality data alignment alone enable advanced I2V models to "emerge" rigid-body control capabilities?**
 
-We adopt a minimalist "data-centric" strategy: constructing the **Circle-Rotate** benchmark with 2,168 geometrically aligned videos, and fine-tuning the Wan2.2 I2V model using only lightweight LoRA adapters (0.7% parameter overhead). Our method reduces subject drift by **81%** compared to I2V baselines, while maintaining high-fidelity generation quality.
+We adopt a minimalist "data-centric" strategy: constructing the **Circle-Rotate** benchmark with 2,168 geometrically aligned videos, and fine-tuning the Wan2.2 I2V model using only lightweight LoRA adapters (1.4% parameter overhead). Our method reduces subject drift by **15.1%** compared to I2V baselines on CO3D, while maintaining high-fidelity generation quality.
 
 ## News
 
