@@ -122,21 +122,7 @@ pip install -r requirements.txt
 
 ### Download Required Models
 
-Download the following models to your ComfyUI `models/` directory:
-
-```
-ComfyUI/models/
-├── diffusion_models/
-│   ├── wan2.2_fun_inpaint_high_noise_14B_fp8_scaled.safetensors
-│   └── wan2.2_fun_inpaint_low_noise_14B_fp8_scaled.safetensors
-├── loras/
-│   ├── wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors
-│   └── wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors
-├── vae/
-│   └── wan_2.1_vae.safetensors
-└── text_encoders/
-    └── umt5_xxl_fp8_e4m3fn_scaled.safetensors
-```
+Download the following models to your ComfyUI `models/` directory (see directory structure above):
 
 **Download Links:**
 
