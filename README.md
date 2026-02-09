@@ -59,48 +59,86 @@ Our approach consists of two key components:
 
 ## Installation
 
+### Prerequisites
+
+This project requires [ComfyUI](https://github.com/comfyanonymous/ComfyUI) for inference. Please install ComfyUI first:
+
 ```bash
-# Clone the repository
+# Install ComfyUI (see official guide for details)
+git clone https://github.com/comfyanonymous/ComfyUI.git
+cd ComfyUI
+pip install -r requirements.txt
+```
+
+For detailed installation instructions, refer to the [ComfyUI Installation Guide](https://docs.comfy.org/get_started/manual_install).
+
+### Clone This Repository
+
+```bash
 git clone https://github.com/Jklaity/Circle-Rotate.git
 cd Circle-Rotate
-
-# Create conda environment
-conda create -n circle-rotate python=3.10 -y
-conda activate circle-rotate
-
-# Install dependencies
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
 pip install -r requirements.txt
 ```
 
 ## Quick Start
 
-### Download Pretrained Weights
+### Download Required Models
+
+Download the following models to your ComfyUI `models/` directory:
+
+**Diffusion Models** (place in `models/diffusion_models/`):
+- [wan2.2_fun_inpaint_high_noise_14B_fp8_scaled.safetensors](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_fun_inpaint_high_noise_14B_fp8_scaled.safetensors)
+- [wan2.2_fun_inpaint_low_noise_14B_fp8_scaled.safetensors](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/diffusion_models/wan2.2_fun_inpaint_low_noise_14B_fp8_scaled.safetensors)
+
+**4-Step Acceleration LoRA** (place in `models/loras/`):
+- [wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors)
+- [wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/loras/wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors)
+
+**VAE** (place in `models/vae/`):
+- [wan_2.1_vae.safetensors](https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors)
+
+**Text Encoder** (place in `models/text_encoders/`):
+- [umt5_xxl_fp8_e4m3fn_scaled.safetensors](https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/main/split_files/text_encoders/umt5_xxl_fp8_e4m3fn_scaled.safetensors)
+
+### Download Circle-Rotate LoRA
 
 ```bash
-# Download LoRA weights from HuggingFace
 huggingface-cli download jk1741391802/circle-rotate-lora --local-dir ./checkpoints
+# Copy to ComfyUI loras folder
+cp checkpoints/*.safetensors /path/to/ComfyUI/models/loras/
 ```
 
 ### Inference
 
-```python
-from inference import CircleRotateInference
+**Option 1: ComfyUI GUI**
 
-# Initialize model
-model = CircleRotateInference(
-    base_model="Wan2.2-I2V-14B",
-    lora_high="checkpoints/circle_rotate_h.safetensors",
-    lora_low="checkpoints/circle_rotate_l.safetensors"
-)
+Load `workflow.json` in ComfyUI interface and run.
 
-# Generate video from first-last frames
-video = model.generate(
-    first_frame="examples/first.png",
-    last_frame="examples/last.png",
-    prompt="A silver sedan, camera smoothly orbits left"
-)
+**Option 2: Command Line**
+
+```bash
+# Set ComfyUI path
+export COMFYUI_PATH=/path/to/ComfyUI
+
+# Run inference
+python inference.py \
+    --first_frame examples/first.png \
+    --last_frame examples/last.png \
+    --prompt "A car, camera smoothly orbits left" \
+    --output output.mp4 \
+    --lora_high circle_rotate_h.safetensors \
+    --lora_low circle_rotate_l.safetensors
 ```
+
+**Parameters:**
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--cfg` | 1.6 | CFG scale |
+| `--steps` | 4 | Inference steps |
+| `--width` | 1280 | Video width |
+| `--height` | 720 | Video height |
+| `--num_frames` | 81 | Number of frames |
+| `--lora_strength` | 1.0 | LoRA strength (0.8-1.0 recommended) |
 
 ## Circle-Rotate Dataset
 
