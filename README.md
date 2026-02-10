@@ -5,9 +5,6 @@
 <p align="center">
   <h1 align="center">Implicit Motion Alignment: A Data-Centric Empirical Study for Rigid-Body Video Generation</h1>
   <p align="center">
-    <a href="https://arxiv.org/abs/xxxx.xxxxx">
-      <img src='https://img.shields.io/badge/arXiv-Paper-red?style=flat&logo=arxiv' alt='arXiv'>
-    </a>
     <a href="https://github.com/Jklaity/Circle-Rotate">
       <img src='https://img.shields.io/badge/GitHub-Code-black?style=flat&logo=github' alt='GitHub'>
     </a>
