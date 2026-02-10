@@ -278,7 +278,7 @@ python scripts/eval_all.py --video path/to/video.mp4 --output results.json
 ## 致谢
 
 本工作基于以下优秀的开源项目：
-- [Wan2.1](https://github.com/Wan-Video/Wan2.1) - 基础 I2V 模型
+- [Wan2.2](https://github.com/Wan-Video/Wan2.2) - 基础 I2V 模型
 - [musubi-tuner](https://github.com/kohya-ss/musubi-tuner) - LoRA 训练框架
 
 ## 许可证

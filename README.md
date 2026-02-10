@@ -351,7 +351,7 @@ python scripts/eval_all.py --video path/to/video.mp4 --output results.json
 ## Acknowledgements
 
 This work builds upon several excellent open-source projects:
-- [Wan2.1](https://github.com/Wan-Video/Wan2.1) - Base I2V model
+- [Wan2.2](https://github.com/Wan-Video/Wan2.2) - Base I2V model
 - [musubi-tuner](https://github.com/kohya-ss/musubi-tuner) - LoRA training framework
 
 ## License
