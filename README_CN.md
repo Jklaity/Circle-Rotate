@@ -39,6 +39,8 @@
 
 ## 动态
 
+- **[2025.02.10]** [Circle-Rotate 数据集](https://huggingface.co/datasets/jk1741391802/circle-rotate-dataset)已发布！
+- **[2025.02.10]** 训练样本数据和生成评估数据已发布！
 - **[2025.02.04]** 预训练权重发布！
 
 ## 方法概述
@@ -54,17 +56,62 @@
 
 ## 安装
 
+### 前置条件
+
+本项目推荐使用 [ComfyUI](https://github.com/comfyanonymous/ComfyUI) 进行推理。
+
+### 目录结构
+
+**重要：** 请将两个仓库克隆到同一父目录下：
+
+```
+workspace/                        # 你的工作目录
+├── ComfyUI/                      # ComfyUI 安装目录
+│   ├── main.py
+│   ├── nodes.py
+│   ├── server.py
+│   ├── comfy/
+│   ├── comfy_extras/
+│   ├── models/
+│   │   ├── diffusion_models/
+│   │   │   ├── wan2.2_fun_inpaint_high_noise_14B_fp8_scaled.safetensors
+│   │   │   └── wan2.2_fun_inpaint_low_noise_14B_fp8_scaled.safetensors
+│   │   ├── loras/
+│   │   │   ├── wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors
+│   │   │   ├── wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors
+│   │   │   ├── circle_rotate_h.safetensors      # Circle-Rotate LoRA
+│   │   │   └── circle_rotate_l.safetensors      # Circle-Rotate LoRA
+│   │   ├── vae/
+│   │   │   └── wan_2.1_vae.safetensors
+│   │   └── text_encoders/
+│   │       └── umt5_xxl_fp8_e4m3fn_scaled.safetensors
+│   └── ...
+└── Circle-Rotate/                # 本项目（与 ComfyUI 同级）
+    ├── inference.py
+    ├── workflow.json
+    ├── examples/
+    └── ...
+```
+
+### 安装步骤
+
+**步骤 1：安装 ComfyUI**
+
 ```bash
-# 克隆仓库
+cd workspace
+git clone https://github.com/comfyanonymous/ComfyUI.git
+cd ComfyUI
+pip install -r requirements.txt
+```
+
+详细说明请参考 [ComfyUI 安装指南](https://docs.comfy.org/get_started/manual_install)。
+
+**步骤 2：克隆本仓库**
+
+```bash
+cd workspace
 git clone https://github.com/Jklaity/Circle-Rotate.git
 cd Circle-Rotate
-
-# 创建 conda 环境
-conda create -n circle-rotate python=3.10 -y
-conda activate circle-rotate
-
-# 安装依赖
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
 pip install -r requirements.txt
 ```
 

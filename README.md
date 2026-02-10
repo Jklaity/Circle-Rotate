@@ -39,6 +39,8 @@ We adopt a minimalist "data-centric" strategy: constructing the **Circle-Rotate*
 
 ## News
 
+- **[2025.02.10]** [Circle-Rotate dataset](https://huggingface.co/datasets/jk1741391802/circle-rotate-dataset) released!
+- **[2025.02.10]** Training samples and generation evaluation data released!
 - **[2025.02.04]** Pre-trained weights released!
 
 ## Method Overview
@@ -56,7 +58,7 @@ Our approach consists of two key components:
 
 ### Prerequisites
 
-This project requires [ComfyUI](https://github.com/comfyanonymous/ComfyUI) for inference.
+This project recommends [ComfyUI](https://github.com/comfyanonymous/ComfyUI) for inference.
 
 ### Directory Structure
 
